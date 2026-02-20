@@ -96,6 +96,7 @@
   var user_editing = false;
   var app_started = false;
   var last_get_failed = false;
+  var last_post_failed = false;
   var refresh_counter = 0;
   var autorun = 1;
   var datasets = [];
@@ -3129,6 +3130,7 @@
       cache: false
     })
     .done(function(dresult) {
+      last_post_failed = false;
       // OK: Load the params received as POST result
       if(dresult.datasets !== undefined && dresult.datasets.params !== undefined) {
 
@@ -3180,8 +3182,15 @@
         showModalError('Error while sending data (E2).', false, true, true);
       }
     })
-    .fail(function() {
-      showModalError('Error while sending data (E3).', false, true, true);
+    .fail(function(jqXHR, textStatus) {
+      if(last_post_failed) {
+        showModalError('Error while sending data (E3): ' + textStatus + '.', false, true, true);
+        last_post_failed = false;
+      }
+      else {
+        last_post_failed = true;
+        send_que = true; // One more try
+      }
     })
     .always(function() {
       sending = false;
