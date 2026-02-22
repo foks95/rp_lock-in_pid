@@ -13,6 +13,12 @@ For more information about installing procedure, refer to:
 https://marceluda.github.io/rp_lock-in_pid/TheApp/install/
 
 
+
+## Szybka instalacja (SIGNALlab 250-12)
+
+Szczegółowa instrukcja krok po kroku jest tutaj:
+- `doc/INSTALACJA_SIGNALLAB25012_KROK_PO_KROKU.md`
+
 ## The Lock-in+PID project
 The project is hosted in: https://marceluda.github.io/rp_lock-in_pid
 
